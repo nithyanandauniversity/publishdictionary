@@ -4,7 +4,8 @@ import java.sql.DriverManager
 object MysqlApp extends App {
 
   val connection = DriverManager.getConnection(
-    "jdbc:mysql://localhost:3306/dict?user=dict&password=dict&rewriteBatchedStatements=true"
+    "jdbc:mysql://localhost:3306/dict?user=dict&password=dict" +
+      "&rewriteBatchedStatements=true&serverTimezone=UTC"
   )
   val statement = connection.createStatement()
 
@@ -19,6 +20,7 @@ object MysqlApp extends App {
     println(count)
   }
 
+  /*
   val psmt = connection.prepareStatement("INSERT into data (word, lnum, meaning, source) VALUES (?,?,?,?)")
 
   val resultSet = new SqliteApp().getResultSet
@@ -39,4 +41,6 @@ object MysqlApp extends App {
   psmt.executeBatch()
   println(countInsert)
   connection.close()
+   */
+
 }
