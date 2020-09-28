@@ -1,8 +1,4 @@
-import java.sql.Connection
-import java.sql.DriverManager
-import java.sql.ResultSet
-import java.sql.SQLException
-import java.sql.Statement
+import java.sql.{DriverManager, ResultSet}
 
 class SqliteApp {
   def getResultSet: ResultSet = {
@@ -12,7 +8,7 @@ class SqliteApp {
   }
 }
 
-// Only for testing 
+// Only for testing
 object SqliteApp extends App {
   val rs = new SqliteApp().getResultSet
   var count = 0
