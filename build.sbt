@@ -14,3 +14,6 @@ libraryDependencies += "mysql" % "mysql-connector-java" % "8.0.21"
 libraryDependencies += "com.lihaoyi" %% "cask" % "0.7.5"
 
 libraryDependencies += "io.getquill" %% "quill-jdbc" % "3.5.3"
+
+// https://mvnrepository.com/artifact/org.scala-lang.modules/scala-xml
+libraryDependencies += "org.scala-lang.modules" %% "scala-xml" % "1.3.0"
