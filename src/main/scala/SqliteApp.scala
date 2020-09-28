@@ -12,6 +12,7 @@ class SqliteApp {
   }
 }
 
+// Only for testing 
 object SqliteApp extends App {
   val rs = new SqliteApp().getResultSet
   var count = 0
