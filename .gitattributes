@@ -1,1 +1,2 @@
 dict_dump_mysql.sql.bz2 filter=lfs diff=lfs merge=lfs -text
+sanskrit-dictionary-2020-09-24-0800.sqlite filter=lfs diff=lfs merge=lfs -text
