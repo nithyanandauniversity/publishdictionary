@@ -8,11 +8,9 @@ object MyWebServer extends cask.MainRoutes {
 
   @cask.get("/word/:word")
   def getMeaning(word: String): cask.Response[String] = {
-    val w = myDict.getWords(word).sortBy(_.source)
     cask.Response(
       headers = Seq(("Content-Type", "text/plain; charset=UTF-8")),
-      data =
-        s"'''${w.head.word}'''\n\r" + w.map(MyParseXml.getHtml).mkString
+      data = MyParseXml.getPage(word)
     )
   }
 
@@ -27,7 +25,12 @@ object MyParseXml {
   val myDict = new MyDict
   private val dictMap: Map[String, String] = myDict.dictionariesList.map(d => d.id -> d.name).toMap
 
-  def getHtml(w: Data): String =
+  def getPage(word: String): String = {
+    val w = myDict.getWords(word).sortBy(_.source)
+    s"'''${w.head.word}'''\n\r" + w.map(MyParseXml.getHtml).mkString
+  }
+
+  private def getHtml(w: Data): String =
     s"""<H1>${dictMap(w.source)}</H1>
        |${MyParseXml.process(w.meaning)}
        |<br/>
@@ -40,7 +43,7 @@ object MyParseXml {
       .replace("</i>", "''")
       .replace("</s>", "'''")
       .replace("<lb/>", "\n\r")
-      .replace("<br/>", "\n\r")
+      .replace("<br/>", "\n")
       .replace("<body>", "\n")
       .replace("</body>", "\n")
       .stripMargin
@@ -70,3 +73,5 @@ class MyDict {
 
 //TODO: Test with http://localhost:8080/word/aDAmArgava
 // http://localhost:8080/word/aDareRa
+
+// TODO: use {{#tip-text: text | tooltip-text}}
