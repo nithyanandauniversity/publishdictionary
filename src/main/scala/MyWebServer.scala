@@ -10,7 +10,7 @@ object MyWebServer extends cask.MainRoutes {
   def getMeaning(word: String): cask.Response[String] = {
     val w = myDict.getWords(word).sortBy(_.source)
     cask.Response(
-      //headers = Seq(("Content-Type", "text/html; charset=UTF-8")),
+      headers = Seq(("Content-Type", "text/plain; charset=UTF-8")),
       data =
         s"'''${w.head.word}'''\n\r" + w.map(MyParseXml.getHtml).mkString
     )
