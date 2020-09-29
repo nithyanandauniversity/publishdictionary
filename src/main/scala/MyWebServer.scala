@@ -12,7 +12,7 @@ object MyWebServer extends cask.MainRoutes {
     cask.Response(
       //headers = Seq(("Content-Type", "text/html; charset=UTF-8")),
       data =
-        s"=== ${w.head.word} ===\n\r" + w.map(MyParseXml.getHtml).mkString("\n\r")
+        s"'''${w.head.word}'''\n\r" + w.map(MyParseXml.getHtml).mkString
     )
   }
 
@@ -30,7 +30,7 @@ object MyParseXml {
   def getHtml(w: Data): String =
     s"""<H1>${dictMap(w.source)}</H1>
        |${MyParseXml.process(w.meaning)}
-       |<br />
+       |<br/>
        |""".stripMargin
       .mkString
       .replace("<H1>", "=== ")
