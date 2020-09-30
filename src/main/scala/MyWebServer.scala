@@ -22,7 +22,7 @@ object MyParseXml {
   def process(s: String): NodeSeq = {
     XML.loadString(s) \\ "body"
   }
-  val myDict = new MyDict
+  val myDict = MyDict
   private val dictMap: Map[String, String] = myDict.dictionariesList.map(d => d.id -> d.name).toMap
 
   def getPage(word: String): String = {
@@ -52,11 +52,13 @@ object MyParseXml {
 case class Data(word: String, lnum: String, meaning: String, source: String)
 case class Dictionaries(id: String, date: Int, name: String)
 
-class MyDict {
+object MyDict {
 
   import io.getquill._
   val ctx = new MysqlMonixJdbcContext(SnakeCase, "ctx")
   import ctx._
+
+  import monix.execution.Scheduler.Implicits.global
 
   private def words(word: String) = quote {
     query[Data].filter(_.word == lift(word))
@@ -65,8 +67,11 @@ class MyDict {
   val dictionariesList: List[Dictionaries] =
     run(quote {
       query[Dictionaries]
-    })
-  def getWords(word: String): List[Data] = run(words(word))
+    }).runSyncUnsafe()
+
+  def getWords(word: String): List[Data] = run(words(word)).runSyncUnsafe()
+
+  def getAllWords = stream(query[Data].map(_.word).distinct)
 
 }
 
