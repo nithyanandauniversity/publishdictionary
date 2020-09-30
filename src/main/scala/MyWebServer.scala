@@ -1,7 +1,5 @@
 object MyWebServer extends cask.MainRoutes {
 
-  import MyParseXml.myDict
-
   @cask.get("/")
   def hello(): String =
     "Hello: use /word/:word"

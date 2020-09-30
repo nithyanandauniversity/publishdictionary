@@ -1,7 +1,4 @@
-import java.util.Date
-
 import monix.eval.Task
-import monix.execution.atomic.AtomicInt
 import okhttp3.HttpUrl
 import org.fastily.jwiki.core.Wiki
 
@@ -16,14 +13,13 @@ object PublishToWiki {
     .withLogin("Admin@test123", "ma52illci70ei31mqimc808to24ud61n")
     .build()
 
-  def publish(title: String, content: String, reason: String): Unit = {
+  def publish(title: String, content: String, reason: String): Unit =
     if(wiki.edit(title, content, reason))
       Metrics.count()
     else {
       println(s"Error: ${title}")
       Metrics.error()
     }
-  }
 
 }
 
