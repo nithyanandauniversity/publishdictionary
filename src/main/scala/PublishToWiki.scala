@@ -31,7 +31,7 @@ object TestPubishToWiki extends App {
 
   import monix.execution.Scheduler.Implicits.global
   Metrics.start()
-  val last = myDict.getAllWords.mapParallelUnordered(5)(d => Task(publish(d)))
+  val last = myDict.getAllWords.mapParallelUnordered(6)(d => Task(publish(d)))
 
   last.lastL.runSyncUnsafe()
 
