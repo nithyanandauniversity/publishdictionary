@@ -4,6 +4,8 @@ import okhttp3.HttpUrl
 import org.fastily.jwiki.core.Wiki
 
 object PublishToWiki {
+
+  // PRE-REQ: Setup Bot instance at Special:BotPasswords
   private val wiki = new Wiki.Builder()
     .withApiEndpoint(
       HttpUrl.parse("https://test.hinduismpedia.org/api.php")
@@ -19,6 +21,7 @@ object PublishToWiki {
 
 object TestPubishToWiki extends App {
   PublishToWiki.publish("AdminTest1", s"=== ${new Date}===", "test")
+
 
   List("aDareRa", "aDAmArgava").map(w => PublishToWiki.publish(w, MyParseXml.getPage(w), w))
 }

@@ -55,7 +55,7 @@ case class Dictionaries(id: String, date: Int, name: String)
 class MyDict {
 
   import io.getquill._
-  val ctx = new MysqlJdbcContext(SnakeCase, "ctx")
+  val ctx = new MysqlMonixJdbcContext(SnakeCase, "ctx")
   import ctx._
 
   private def words(word: String) = quote {
