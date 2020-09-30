@@ -70,7 +70,6 @@ object MyDict {
   def getWords(word: String): List[Data] = run(words(word)).runSyncUnsafe()
 
   def getAllWords = stream(query[Data]
-      .filter(_.source != "MWE").filter(_.source != "AE").filter(_.source != "BOR")
       .sortBy(_.word)(Ord.desc).map(_.word).distinct
   )
 
