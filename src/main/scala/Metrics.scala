@@ -15,7 +15,10 @@ object Metrics {
     .build
 
   def start(): Unit = reporter.start(10, TimeUnit.SECONDS)
-  def stop(): Unit = reporter.stop()
+  def stop(): Unit = {
+    reporter.report()
+    reporter.stop()
+  }
 
   def count(): Unit = counter.mark()
 
