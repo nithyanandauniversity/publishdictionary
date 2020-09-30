@@ -7,7 +7,6 @@ import org.fastily.jwiki.core.Wiki
 
 object PublishToWiki {
 
-  val count = AtomicInt(0)
   // PRE-REQ: Setup Bot instance at Special:BotPasswords
   private val wiki = new Wiki.Builder()
     .withApiEndpoint(
@@ -19,9 +18,11 @@ object PublishToWiki {
 
   def publish(title: String, content: String, reason: String): Unit = {
     if(wiki.edit(title, content, reason))
-        if(count.incrementAndGet(1) % 1000 == 0) println(count.get)
-    else
-        println("Error ---> False: " + count.get )
+      Metrics.count()
+    else {
+      println(s"Error: ${title}")
+      Metrics.error()
+    }
   }
 
 }
@@ -33,11 +34,13 @@ object TestPubishToWiki extends App {
   val myDict = MyDict
 
   import monix.execution.Scheduler.Implicits.global
+  Metrics.start()
   val last = myDict.getAllWords.mapParallelUnordered(5)(d => Task(publish(d)))
 
   last.lastL.runSyncUnsafe()
 
   println(last)
   println("================")
+  Metrics.stop()
 //  List("aDareRa", "aDAmArgava").map(w => )
 }

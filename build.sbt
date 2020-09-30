@@ -22,3 +22,6 @@ libraryDependencies += "org.scala-lang.modules" %% "scala-xml" % "1.3.0"
 
 // https://mvnrepository.com/artifact/org.fastily/jwiki
 libraryDependencies += "org.fastily" % "jwiki" % "1.8.0"
+
+// https://mvnrepository.com/artifact/io.dropwizard.metrics/metrics-core
+libraryDependencies += "io.dropwizard.metrics" % "metrics-core" % "4.1.12.1"
