@@ -10,6 +10,7 @@ object Metrics {
 
   private val metrics = new MetricRegistry
   private val counter = metrics.meter("requests-counter")
+  private val counter2 = metrics.meter("requests-counter2")
   private val errors = metrics.meter("requests-error")
   private val timer = metrics.timer(s"request-timer-${LocalDateTime.now()}")
 

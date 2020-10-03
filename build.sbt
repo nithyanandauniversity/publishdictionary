@@ -27,3 +27,6 @@ libraryDependencies += "org.fastily" % "jwiki" % "1.8.0"
 libraryDependencies += "io.dropwizard.metrics" % "metrics-core" % "4.1.12.1"
 
 libraryDependencies += "io.dropwizard.metrics" % "metrics-jmx" % "4.1.12.1"
+
+// https://mvnrepository.com/artifact/com.ibm.icu/icu4j
+libraryDependencies += "com.ibm.icu" % "icu4j" % "67.1"

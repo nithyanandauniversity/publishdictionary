@@ -1,3 +1,5 @@
+import monix.reactive.Observable
+
 object MyWebServer extends cask.MainRoutes {
 
   @cask.get("/")
@@ -20,7 +22,7 @@ object MyParseXml {
   def process(s: String): NodeSeq = {
     XML.loadString(s) \\ "body"
   }
-  val myDict = MyDict
+  private val myDict = MyDict
   private val dictMap: Map[String, String] = myDict.dictionariesList.map(d => d.id -> d.name).toMap
 
   def getPage(word: String): String = {
@@ -69,7 +71,7 @@ object MyDict {
 
   def getWords(word: String): List[Data] = run(words(word)).runSyncUnsafe()
 
-  def getAllWords = stream(query[Data]
+  def getAllWords: Observable[String] = stream(query[Data]
       .sortBy(_.word)(Ord.desc).map(_.word).distinct
   )
 
