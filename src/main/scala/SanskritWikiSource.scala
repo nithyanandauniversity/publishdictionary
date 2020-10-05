@@ -16,7 +16,7 @@ object SanskritWikiSource extends App {
       HttpUrl.parse("https://sa.wikisource.org/w/api.php")
     )
     //.withDebug(true)
-    .withLogin("Akhilkodali@test", "addbubt3bjg7anl178b322shsbimsiir")
+    .withLogin("Dashsant@swamiji1", "qegj7n83pfg9k7tukjjjpjhc3iutspih")
     .build()
 
   val page = wiki.getRandomPages(1).get(0)
@@ -37,5 +37,4 @@ object SanskritWikiSource extends App {
   println(b.size)
   println(transliterators.transform(myCategory))
 
-  wiki.getRandomPages()
 }
