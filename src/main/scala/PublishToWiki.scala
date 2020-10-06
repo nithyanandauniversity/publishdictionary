@@ -5,7 +5,7 @@ import monix.eval.Task
 import okhttp3.HttpUrl
 import org.fastily.jwiki.core.Wiki
 
-object PublishToWiki extends App {
+object PublishToWiki /*extends App*/ {
 
   // PRE-REQ: Setup Bot instance at Special:BotPasswords
   private val wiki = new Wiki.Builder()
@@ -13,8 +13,8 @@ object PublishToWiki extends App {
       HttpUrl.parse("https://test.hinduismpedia.org/api.php")
     )
     //.withDebug(true)
-    .withLogin("Dashsant@swamiji2", "pr7oitun1ui25hdllr7e2drbegge5oql")
-    //.withLogin("Admin@test123", "ma52illci70ei31mqimc808to24ud61n")
+    //.withLogin("Dashsant@swamiji2", "pr7oitun1ui25hdllr7e2drbegge5oql")
+    .withLogin("Admin@test123", "ma52illci70ei31mqimc808to24ud61n")
     .build()
 
   // .withLogin("Dashsant@swamiji1", "qegj7n83pfg9k7tukjjjpjhc3iutspih")
@@ -29,8 +29,8 @@ object PublishToWiki extends App {
   //val p = Path.of(URI.create("file:/Users/akhil/OneDrive/Pictures/IMG_6977.jpg"))
   //wiki.upload(p, "IMG_6977", "IMG_6977", "testing file upload api")
   //wiki.page
-  wiki.uploadByUrl(HttpUrl.parse("https://farm9.staticflickr.com/8213/8300206113_374c017fc5.jpg"),
-  "$_52-1.JPG", "$_52-1.JPG", "$_57-2.JPG")
+  //wiki.uploadByUrl(HttpUrl.parse("https://farm9.staticflickr.com/8213/8300206113_374c017fc5.jpg"),
+  //"$_52-1.JPG", "$_52-1.JPG", "$_57-2.JPG")
 }
 
 object TestPubishToWiki extends App {
