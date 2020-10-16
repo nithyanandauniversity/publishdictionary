@@ -13,6 +13,7 @@ object Metrics {
   private val counter2 = metrics.meter("requests-counter2")
   private val errors = metrics.meter("requests-error")
   private val timer = metrics.timer(s"request-timer-${LocalDateTime.now()}")
+  private val httpTimer = metrics.timer("request-Http-timer")
 
   private lazy val timerContext = timer.time()
   private val reporter = ConsoleReporter.forRegistry(metrics)
@@ -26,6 +27,13 @@ object Metrics {
     timerContext
     jmxReporter.start()
     reporter.start(10, TimeUnit.SECONDS)
+  }
+
+  def withTimer[A](c: () => A): A = {
+    val content = httpTimer.time()
+    val r = c()
+    content.stop()
+    r
   }
 
   def stop(): Unit = {

@@ -26,13 +26,13 @@ object MyParseXml {
   private val dictMap: Map[String, String] = myDict.dictionariesList.map(d => d.id -> d.name).toMap
 
   def getPage(word: String): String = {
-    val w = myDict.getWords(word).sortBy(_.source)
-    s"'''${w.head.word}'''\n\r" + w.map(MyParseXml.getHtml).mkString
+    val w = myDict.getWords(word).groupBy(_.source).toList.sortBy(_._1)
+    s"'''${word}'''\n\r" + w.map(r => MyParseXml.getHtml(r._2)).mkString
   }
 
-  private def getHtml(w: Data): String =
-    s"""<H1>${dictMap(w.source)}</H1>
-       |${MyParseXml.process(w.meaning)}
+  private def getHtml(words: List[Data]): String =
+    s"=== ${dictMap(words.head.source)} ===" + words.map(w =>
+    s"""${MyParseXml.process(w.meaning)}
        |<br/>
        |""".stripMargin
       .mkString
@@ -47,6 +47,7 @@ object MyParseXml {
       .replace("<body>", "\n")
       .replace("</body>", "\n")
       .stripMargin
+  ).mkString
 }
 
 case class Data(word: String, lnum: String, meaning: String, source: String)

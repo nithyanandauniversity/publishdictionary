@@ -30,3 +30,6 @@ libraryDependencies += "io.dropwizard.metrics" % "metrics-jmx" % "4.1.12.1"
 
 // https://mvnrepository.com/artifact/com.ibm.icu/icu4j
 libraryDependencies += "com.ibm.icu" % "icu4j" % "67.1"
+
+// https://mvnrepository.com/artifact/io.github.andrebeat/scala-pool
+libraryDependencies += "io.github.andrebeat" %% "scala-pool" % "0.4.3"
