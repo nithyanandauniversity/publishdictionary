@@ -1,3 +1,5 @@
+package dict
+
 import java.time.LocalDateTime
 
 import com.codahale.metrics.ConsoleReporter
@@ -6,6 +8,7 @@ import com.codahale.metrics.jmx.JmxReporter
 object Metrics {
 
   import java.util.concurrent.TimeUnit
+
   import com.codahale.metrics.MetricRegistry
 
   private val metrics = new MetricRegistry

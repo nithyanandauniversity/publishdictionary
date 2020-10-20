@@ -1,5 +1,6 @@
-import java.sql.DriverManager
+package dict
 
+import java.sql.DriverManager
 
 object MysqlApp extends App {
 

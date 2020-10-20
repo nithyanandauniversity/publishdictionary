@@ -1,3 +1,5 @@
+package dict
+
 import java.sql.{DriverManager, ResultSet}
 
 class SqliteApp {

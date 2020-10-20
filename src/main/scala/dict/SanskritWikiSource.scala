@@ -1,4 +1,5 @@
-import com.ibm.icu.text.Transliterator
+package dict
+
 import okhttp3.HttpUrl
 import org.fastily.jwiki.core.Wiki
 

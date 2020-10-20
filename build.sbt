@@ -33,3 +33,9 @@ libraryDependencies += "com.ibm.icu" % "icu4j" % "67.1"
 
 // https://mvnrepository.com/artifact/io.github.andrebeat/scala-pool
 libraryDependencies += "io.github.andrebeat" %% "scala-pool" % "0.4.3"
+
+// https://mvnrepository.com/artifact/org.jsoup/jsoup
+libraryDependencies += "org.jsoup" % "jsoup" % "1.13.1"
+
+// https://mvnrepository.com/artifact/org.apache.poi/poi
+libraryDependencies += "org.apache.poi" % "poi-ooxml" % "4.1.2"
